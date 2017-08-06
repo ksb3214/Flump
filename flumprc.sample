@@ -1,0 +1,22 @@
+
+talker_name Karl's Test Talker
+
+prompt_login Login:
+prompt_pass Password:
+prompt_newpass1 Select a password:
+prompt_newpass2 Repeat password:
+
+db_host localhost
+db_user talker
+db_pass talker
+db_name talker
+db_objects objects
+db_attributes attributes
+
+cache_max 50
+
+debug 1
+
+ip_port 5000
+
+modules modules/core/login.so,modules/user/basic.so,modules/user/admin.so,modules/user/rooms.so,modules/user/privs.so,modules/user/info.so,modules/user/custom.so,modules/user/auto.so,modules/user/spodtimes.so,modules/user/lists.so,modules/user/socials.so,modules/user/bugs.so,modules/user/radio.so,modules/user/motd.so,modules/user/messages.so,modules/user/bingo.so,modules/user/connect4.so,modules/user/money.so,modules/user/bling.so

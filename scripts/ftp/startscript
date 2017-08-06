@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pure-uploadscript -B -r /home/mp3upload/scan.pl

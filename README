@@ -1,0 +1,33 @@
+Flump - A talker
+
+This is a talker I wrote back in the day when such things were popular, it's on github so I can experiment with a few CI tools and github in general.
+
+The code appears to compile and work on Debian 8.
+
+I've added a few junk files to git just because I wanted to get going with my primary task, but they are unlikely to get in the way.
+
+Just incase you ocme across this and want to use it for whatever reason here's a quickstart...
+
+./configure
+make all
+
+Create a mysql db for it with an associated user with the usual privs.
+Import the shema files (I really hope they are up to date, it has been 12 years since this was last used)
+
+back to the flump/ directory
+
+./flump -c
+
+Set it up, it'll save a ~/.flumprc file, or you can create it yourself from the sample provided.
+
+then to kick it all off..
+
+./flump
+
+Then telnet or whatever your client of choice is (it works very well with TinyFugue) to whatever port you configured.
+
+That's all folks, I'm sure you'll figure the rest out.
+
+PS. The code isn't perfect, it is shockingly hard on DB usage, although with today's machines I imagine it'll barely register, but I think it's quite a cool little project, completely modular, you could turn it into a web server, MTA, etc just by writing new modules.
+
+KSB

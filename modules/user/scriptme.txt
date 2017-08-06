@@ -1,0 +1,9 @@
+Iteration:
+
+FOR [variable] = [variable/constant] {TO/DOWNTO] [variable/constant]
+NEXT [variable]
+
+WHILE [expression]
+WEND
+
+

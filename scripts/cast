@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ices -v -S perl -C 1 -m flump -h 195.112.36.254 -p 8000 -P flumpcode -t icy -n 'Flump Radio' -g 'Mix' -d 'Flump Radio' -u 'http://flump.amber.org.uk' -s -b 48 -R -N 1

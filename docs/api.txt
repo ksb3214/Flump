@@ -1,0 +1,129 @@
+<html>
+<title>Flump API</title>
+<body>
+This document summarises the Flump talker API, it isn't really intended to be a guide on how to code modules for flump, more of a reference to what the various functions do.<br>
+<br>
+When coding a new module you are best looking at similar functionality in existing modules, figuring out how it works and expanding on it.<br>
+<br>
+Last updated: 08-July-2005<br>
+<br>
+<b>Back end storage</b><br>
+By default flump uses the <a href="http://www.mysql.com">MySQL</a> database for storage, it's designed so no module should need to execute it's own SQL, this allows core developers to change the back end to fit their own needs, the following functions should persist regardless.<br>
+<br>
+<b>void check_cache()</b><br>
+<br>
+This prints the contents of the cache to stdout, flump maintains an internal cache by default to reduce hits on the db and therefore load on the server.  Function is used for debug.<br>
+<br>
+<b>char *get_attribute(unsigned long object, char *name)</b><br>
+<br>
+Gets an attribute for the given object (OID), the attribute required is sepcified by <i>name</i>. The caller will need to <i>free()</i> the result, unless it is NULL, in which case the attribute was not found.<br>
+<br>
+<b>void set_attribute(unsigned long object, char *name, char *value)</b><br> 
+<br>
+Sets an attribute for an object, whether the attribute existed previously or not. <i>value</i> should not be NULL.<br>
+<br>
+<b>void cache_clear()</b><br>
+<br>
+This clears the internal cache, it is non-destructive and is mainly useful if the DB has been changed externally.<br>
+<br>
+<b>void delete_attribute(unsigned long object, char *name)</b><br>
+<br>
+This removes <i>name</i> attribute for the given <i>object</i>.<br>
+<br>
+<b>void delete_all_attributes(unsigned long object)</b><br>
+<br>
+Removes all attributes for <i>object</i>, this will however not remove the object itself.<br>
+<br>
+
+<b>void listcommands(connection *u, char *arg)</b><br>
+<br>
+Lists all the commands available to the user <i>u</i>, this will obey sub-commands, so if you have defined a sub menu this function is the one to link too when you add a <i>commands</i> command.<br>
+<br>
+<b>int is_command(char *cmd)</b><br>
+<br>
+<b>int accessok(command *cmd, connection *u)</b><br>
+<br>
+If the function <i>priv_match()</i> exists in any module this will use it to determine if a command is available to the given user, if the talker has no privs then it will return true for all.<br>
+<br>
+<b>void run_command(connection *u, char *cmd2)</b><br>
+<br>
+This is the default command handler and what u->function should be set to if the user is not in any other modes.<br>
+<br>
+<b>void remove_command(char *name, mode *cmode)</b><br>
+<br>
+Removes a command from the talker, if the command is not associated with a special mode then pass NULL to <i>cmode</i>. All modules must do this in uninit().<br>
+<br>
+<b>void add_command(char *name, void (*function)(connection *u,char *arg), char *alias, mode *cmode)</b><br>
+<br>
+Adds a command to the talker, if <i>funtion</i> is NULL then <i>alias</i> must be provided, alias must already exist as a command in the talker (using a previous call to add_command()).<br>
+<br>
+
+void set_command_flag(char *name, unsigned char flag)
+char get_command_flag(char *name, unsigned char flag)
+void clear_commands()
+
+/* well if i do this correctly then we should be able to do some funky stuff
+** with events, such as command privs
+**
+** passed is info on which the event handlers may depend.
+** ret is passed back and will need FREEing by the caller
+*/
+void raise_event(connection *u, short id, char *passed, char **ret)
+
+void config_set(char *key, char *val)
+char *config_get(char *key)
+
+void freelist(struct lists_st *lst)
+struct lists_st *getvalues(int type, char *attr2)
+char *db_get_obj_name(unsigned long id)
+void db_delete_obj(unsigned long id)
+/* get the object id from name and type
+// done as a pointer cos 0 could be a valid id
+// returns null for no such object
+*/
+unsigned long *db_get_objid(char *name, unsigned long type)
+/* Creates a new object of name and type and returns
+// the new objects id
+// returns NULL on failure (hmmm)
+// does NOT check to see if the object already exists so
+// this will fuck with your data if you are not carefull
+*/
+unsigned long *db_set_newobj(char *name, unsigned long type)
+
+void format_bar(connection *u, char *info, char *buffer)
+
+void *MALLOC(size_t s, char *desc)
+void FREE(void *s)
+
+int iscolour(char c)
+char *daysago(time_t num)
+char *timeval(time_t num)
+void stolower(char *str)
+
+char *ele_delim(char *buf, int index)
+int in_delim(char *buf1, char *what)
+void insert_into(char **buf, char *what)
+void remove_from(char **buf, char *what)
+void echo_off(connection *u)
+void echo_on(connection *u)
+void doprompt(connection *c, char *str)
+char *getgen(connection *u, char *m, char *f, char *n)
+/* get a users connection from the name
+** now takes into account prefer, if lists are loaded
+*/
+connection *getubyname(connection *u, char *name, char *errormsg)
+char *stripspace(char *str)
+
+void look(connection *u, char *arg)
+int create_room(char *roomname)
+char *get_user_room(connection *u)
+
+void showprompt(connection *u)
+/* does not obey ignore */
+void swall(connection *u, char *txt)
+void sroom(connection *u, char *txt)
+void wsock(int socket,char *str)
+void swrite(connection *s,connection *u, char *txt)
+
+MALLOC
+FREE

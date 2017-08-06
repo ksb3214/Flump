@@ -1,0 +1,62 @@
+-----------------------------------------------------------------------------
+Misc ideas - Once decided assign to a future version needs
+-----------------------------------------------------------------------------
+Colour and swear filtering  (colour done,ksb)
+Emergency reporting to admin
+Marriage and engagement
+Add auto-loaded modules to config file
+Generic register_info() call to register information callback functions
+  for things like X to access info in foreign modules
+
+-----------------------------------------------------------------------------
+Stuff to do to reach v1.0						Done?
+-----------------------------------------------------------------------------
+version									Yes
+credits									Yes
+pemote/premote								Yes
+finger									Yes
+idlemsg									Yes
+motd									Yes
+add login/offmsg to x							Yes
+lists [friends/etc] 							Yes
+email (once lists are done)						Yes
+age/gender in x								Yes
+spodlist								V2.0
+idea/bug commands							Yes
+true spodtime								Yes
+Sanity checking for cname						Yes
+Set sensible standards for login names (isalpha, MAX_NAME, etc)		Yes*
+Implement the talkers.ws stats info system				Yes
+Admin commands (nuke, res and stuff)					yes
+Banname									V2.
+jetlag									V2.0
+dont allow reconnections during login (test this)			N/A
+better invite only messages						Yes
+finish invite system							Yes
+wake									Yes
+
+* (mostly)
+-----------------------------------------------------------------------------
+Stuff to do to reach v2.0						Done?
+-----------------------------------------------------------------------------
+Carried over from V1.0 TODOs
+Mail system								v3.0
+Editor									v3.0
+Home rooms and related commands						Yes
+Socials									Yes
+Help pages								Yes
+Channels								N/A
+Admin documentation							Yes
+Proper socket input routine handling telopts				Yes
+Tell history per user							Yes
+Module paths in .flumprc						v3.0
+Adjust look for short output if more than 10 users on			Yes
+
+-----------------------------------------------------------------------------
+Stuff to do to reach v3.0						Done?
+-----------------------------------------------------------------------------
+Carried over from V2.0 TODOs
+MCCP
+A new intermail system
+An intercom system (possibly with pg+ support)
+Complete code tidyup
